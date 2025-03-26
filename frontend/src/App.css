@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  background-color: #8ee000;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding: 20px;
+  color: #222;
+  text-align: center;
+}
+
+.scanner-box {
+  width: 300px;
+}
+
+/* Style scanner buttons inside html5-qrcode */
+#reader button {
+  background-color: #222;
   color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  display: block;
+  margin: 12px auto 12px auto; /* adds spacing */
 }
 
-.App-link {
-  color: #61dafb;
+#reader button:hover {
+  background-color: #444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#reader a {
+  color: #004d00;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#reader a:hover {
+  text-decoration: underline;
+}
+
+/* Optional: remove the default scanner box border */
+#reader__dashboard_section_csr {
+  border: none !important;
+  box-shadow: 0 0 0 transparent !important;
+}
+
+.result-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  word-break: break-word;
+}
+
+.json-output {
+  font-size: 14px;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  text-align: left;
+}
+
+.send-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #8ee000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #a1e43f;
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import "./App.css"; // 👈 Import the styles here
 
 function App() {
   const [scanResult, setScanResult] = useState(null);
@@ -22,24 +23,32 @@ function App() {
   }, []);
 
   const sendToServer = async () => {
-    const response = await fetch("http://localhost:8000/scan-data", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: scanResult })
-    });
-    const result = await response.json();
-    alert("Sent to backend: " + JSON.stringify(result));
+    try {
+      const response = await fetch("/scan-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: scanResult })
+      });
+      const result = await response.json();
+      alert("Sent to backend: " + JSON.stringify(result));
+    } catch (error) {
+      alert("Error sending to server: " + error.message);
+    }
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h2>QR Scanner App</h2>
+    <div className="container">
+      <h1>EV QR Scanner</h1>
+
       {!scanResult ? (
-        <div id="reader" />
+        <div id="reader" className="scanner-box" />
       ) : (
-        <div>
-          <p><strong>Scanned Data:</strong> {scanResult}</p>
-          <button onClick={sendToServer}>Send to Server</button>
+        <div className="result-box">
+          <h3>Scanned Data</h3>
+          <pre className="json-output">{scanResult}</pre>
+          <button onClick={sendToServer} className="send-button">
+            Send to Server
+          </button>
         </div>
       )}
     </div>
